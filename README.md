@@ -1,12 +1,3 @@
-Download the repository with the following command:
-```bash
-    git clone https://github.com/Niuffi/sensorTest.git
-```
-Change directory to the repository folder:
-```bash
-    cd sensorTest
-```
-
 Install the required packages:
 ```bash
     sudo apt update
@@ -16,7 +7,14 @@ Install the required packages:
     sudo pip3 install RPi.GPIO
     sudo pip3 install smbus
 ```
-
+Download the repository with the following command:
+```bash
+    git clone https://github.com/Niuffi/sensorTest.git
+```
+Change directory to the repository folder:
+```bash
+    cd sensorTest
+```
 Run the program:
 ```bash
     python3 main.py

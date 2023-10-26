@@ -1,4 +1,4 @@
-import AS7341_controller
+from lib import AS7341_controller
 
 sensor1 = AS7341_controller.AS7341_controller()
 
