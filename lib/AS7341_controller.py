@@ -1,7 +1,6 @@
 from lib.Sensor import Sensor
-
-import logging
 from lib.AS7341 import AS7341
+import logging
 
 
 class AS7341_controller(Sensor):
