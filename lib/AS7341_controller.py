@@ -1,10 +1,4 @@
 from lib.Sensor import Sensor
-import sys
-import os
-
-# libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), '')
-# if os.path.exists(libdir):
-#     sys.path.append(libdir)
 
 import logging
 from lib.AS7341 import AS7341
