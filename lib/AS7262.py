@@ -21,7 +21,7 @@ class AS7262:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(power_enable_pin, GPIO.OUT)
         GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BMC)
+        GPIO.setmode(GPIO.BCM)
 
     def enable_as7262_power(self):
         GPIO.output(power_enable_pin, GPIO.HIGH)
