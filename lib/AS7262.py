@@ -28,6 +28,7 @@ class AS7262:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(power_enable_pin, GPIO.OUT)
         GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BOARD)
         bus.write_byte_data(AS7262_ADDRESS, AS7262_CONTROL, 0x03)
 
         while True:
