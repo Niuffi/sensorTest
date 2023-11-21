@@ -35,7 +35,6 @@ class AS7262:
         bus.write_byte_data(AS7262_ADDRESS, AS7262_CONTROL, 0x03)
 
         while True:
-            print("1")
             data = bus.read_byte_data(AS7262_ADDRESS, AS7262_SLAVE_STATUS_REG)
             if (data & 0x02) == 0x02:
                 break
