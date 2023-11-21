@@ -15,6 +15,7 @@ bus = smbus.SMBus(I2C_BUS_NUMBER)
 power_enable_pin = 17
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(power_enable_pin, GPIO.OUT)
+GPIO.setwarnings(False)
 
 
 class AS7262:

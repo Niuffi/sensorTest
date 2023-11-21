@@ -12,7 +12,6 @@ class AS7262_controller(Sensor):
             results = obj.read_as7262_data()
 
         except KeyboardInterrupt:
-            obj.disable_as7262_power()
             pass
 
         return results
