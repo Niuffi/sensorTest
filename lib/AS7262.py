@@ -17,18 +17,21 @@ power_enable_pin = 17
 
 
 class AS7262:
+    def setup(self):
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(power_enable_pin, GPIO.OUT)
+        GPIO.setwarnings(False)
+        GPIO.setmode(GPIO.BOARD)
+
     def enable_as7262_power(self):
         GPIO.output(power_enable_pin, GPIO.HIGH)
         time.sleep(0.1)
 
     def disable_as7262_power(self):
-        GPIO.output(power_enable_pin, GPIO.LOW)
+        # GPIO.output(power_enable_pin, GPIO.LOW)
+        pass
 
     def read_as7262_data(self):
-        GPIO.setmode(GPIO.BCM)
-        GPIO.setup(power_enable_pin, GPIO.OUT)
-        GPIO.setwarnings(False)
-        GPIO.setmode(GPIO.BOARD)
         bus.write_byte_data(AS7262_ADDRESS, AS7262_CONTROL, 0x03)
 
         while True:
