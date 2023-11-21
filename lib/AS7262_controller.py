@@ -1,4 +1,4 @@
-from lib.sensor import Sensor
+from lib.Sensor import Sensor
 from lib.AS7262 import AS7262
 
 
