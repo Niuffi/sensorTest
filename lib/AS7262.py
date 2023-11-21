@@ -36,6 +36,7 @@ class AS7262:
 
         while True:
             data = bus.read_byte_data(AS7262_ADDRESS, AS7262_SLAVE_STATUS_REG)
+            print(data)
             if (data & 0x02) == 0x02:
                 break
             time.sleep(0.1)
