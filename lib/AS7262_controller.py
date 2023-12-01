@@ -25,9 +25,8 @@ class AS7262_controller(Sensor):
         # obj.set_indicator_led(1)
 
         try:
-            while True:
-                results = obj.get_calibrated_values()
-                print("""
+            results = obj.get_calibrated_values()
+            print("""
         Red:    {}
         Orange: {}
         Yellow: {}
