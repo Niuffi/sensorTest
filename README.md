@@ -6,6 +6,7 @@ Install the required packages:
     sudo apt install python3-pil
     sudo pip3 install RPi.GPIO
     sudo pip3 install smbus
+    sudo pip3 install i2cdevice
 ```
 Download the repository with the following command:
 ```bash
