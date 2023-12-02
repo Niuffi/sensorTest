@@ -52,8 +52,8 @@ async function getFiles() {
         button.onclick = () => downloadFile(file.originalName);
 
         row.appendChild(sensor);
-        row.appendChild(date);
         row.appendChild(time);
+        row.appendChild(date);
         row.appendChild(samples);
         row.appendChild(button);
         tableBody.appendChild(row);
