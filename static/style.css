@@ -4,21 +4,27 @@
     color: #ffffff;
   }
 }
-
 table {
+  width: 60%; /* Ustawienie szerokości tabeli */
+  min-width: auto;
+  margin: 0 auto; /* Wyśrodkowanie tabeli */
   border-collapse: collapse;
-  width: 100%;
 }
 
 th, td {
   text-align: left;
-  padding: 8px;
+  padding: 12px; /* Zwiększenie odstępu wewnątrz komórek */
 }
 
-tr:nth-child(even){background-color: rgba(43, 45, 48, 0.5)
+tr:nth-child(even) {
+  background-color: rgba(43, 45, 48, 0.5);
 }
 
 th {
   background-color: #000000;
   color: white;
+}
+
+button {
+  margin-right: 25px;
 }

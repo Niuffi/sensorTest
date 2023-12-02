@@ -3,38 +3,57 @@ function start() {
     const AS7262 = document.getElementById("AS7262");
     const AS7341 = document.getElementById("AS7341");
 
-
-
-    console.log("" +
-        "n: " + n.value + "\n" +"" +
-        "AS7262: " + AS7262.checked + "\n" +
-        "AS7341: " + AS7341.checked + "\n");
+    fetch('/api/start?n=' + n.value + '&AS7262=' + AS7262.checked + '&AS7341=' + AS7341.checked)
 }
 
 async function getFiles() {
-    // AS7672_2023-01-01_12:47:11_10.csv
     let files = []
 
     const response = await fetch('/api/files').then(response => response.json());
-    console.log(response);
 
     response.forEach(fileName => {
-        fileNameNoExtension = fileName.split(".")[0];
-        fileNameSplited = fileNameNoExtension.split("_");
+        const fileNameNoExtension = fileName.split(".")[0];
+        const fileNameSplit = fileNameNoExtension.split("_");
         files.push({
-            sensor: fileNameSplited[0],
-            date: fileNameSplited[1],
-            time: fileNameSplited[2],
-            samples: fileNameSplited[3],
+            sensor: fileNameSplit[0],
+            date: fileNameSplit[1],
+            time: fileNameSplit[2],
+            samples: fileNameSplit[3],
             originalName: fileName
         });
     });
-    console.log(files);
 
     const table = document.getElementById("filesTable");
     const tableBody = document.createElement("tbody");
+    table.innerHTML = "";
     tableBody.id = "filesTableBody";
     table.appendChild(tableBody);
+
+    // header
+    const header = document.createElement("tr");
+    const sensorHeader = document.createElement("th");
+    const timeHeader = document.createElement("th");
+    const dateHeader = document.createElement("th");
+    const samplesHeader = document.createElement("th");
+    const downloadHeader = document.createElement("th");
+    const deleteHeader = document.createElement("th");
+
+    sensorHeader.innerText = "Sensor";
+    timeHeader.innerText = "Time";
+    dateHeader.innerText = "Date";
+    samplesHeader.innerText = "Samples";
+    downloadHeader.innerText = "";
+    deleteHeader.innerText = "";
+
+    header.appendChild(sensorHeader);
+    header.appendChild(timeHeader);
+    header.appendChild(dateHeader);
+    header.appendChild(samplesHeader);
+    header.appendChild(downloadHeader);
+    header.appendChild(deleteHeader);
+
+    tableBody.appendChild(header);
+
 
     files.forEach(file => {
         const row = document.createElement("tr");
@@ -42,24 +61,26 @@ async function getFiles() {
         const time = document.createElement("td");
         const date = document.createElement("td");
         const samples = document.createElement("td");
-        const button = document.createElement("button");
+        const downloadButton = document.createElement("button");
+        const deleteButton = document.createElement("button");
 
         sensor.innerText = file.sensor;
         date.innerText = file.date;
         time.innerText = file.time;
         samples.innerText = file.samples;
-        button.innerText = "Download";
-        button.onclick = () => downloadFile(file.originalName);
+        downloadButton.innerText = "Download";
+        downloadButton.onclick = () => downloadFile(file.originalName);
+        deleteButton.innerText = "Delete";
+        deleteButton.onclick = () => deleteFile(file.originalName);
 
         row.appendChild(sensor);
         row.appendChild(time);
         row.appendChild(date);
         row.appendChild(samples);
-        row.appendChild(button);
+        row.appendChild(downloadButton);
+        row.appendChild(deleteButton);
         tableBody.appendChild(row);
     });
-
-
 }
 
 async function downloadFile(fileName) {
@@ -73,6 +94,15 @@ async function downloadFile(fileName) {
     link.click();
     document.body.removeChild(link);
 
+}
+
+async function deleteFile(fileName) {
+    const confirmation = confirm("Are you sure you want to delete " + fileName + "?");
+
+    if (confirmation) {
+        await fetch('/api/file/' + fileName, {method: 'DELETE'});
+        getFiles();
+    }
 }
 
 function saveConfigToCookies() {

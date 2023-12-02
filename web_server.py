@@ -17,8 +17,8 @@ def start():
     AS7262 = request.args.get('AS7262')
     # AS7265x = request.args.get('AS7265x')
 
-    n_run = int(n)
     sensors_to_run = []
+    n_run = 1 if n == '' else int(n)
     sensors_to_run.append('AS7341') if AS7341 == '1' else None
     sensors_to_run.append('AS7262') if AS7262 == '1' else None
     # sensors_to_run.append('AS7265x') if AS7265x == '1' else None
@@ -44,11 +44,9 @@ def download_file(filename):
     return send_from_directory(directory, filename, as_attachment=True)
 
 
-@app.route('/api/file', methods=['DELETE'])
-def delete_file():
-    file_name = request.args.get('file_name')
-
-    os.remove(f'data/{file_name}')
+@app.route('/api/file/<path:filename>', methods=['DELETE'])
+def delete_file(filename):
+    os.remove(f'data/{filename}')
 
     return 'deleted'
 
