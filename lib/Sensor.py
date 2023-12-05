@@ -1,3 +1,7 @@
+import csv
+import datetime
+
+
 class Sensor:
     results = []
 
@@ -11,4 +15,19 @@ class Sensor:
 
     def get_results(self):
         return self.results
+
+    def get_results_as_csv(self, n):
+        self.read_n_times(self, n)
+
+        class_name = self.__class__.__name__.split("_")[0]
+        data_time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+        file_name = f'{class_name}_{data_time}_{n}.csv'
+
+        with open(f'data/{file_name}', 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerow(self.results[0].keys())
+            for result in self.results:
+                writer.writerow(result.values())
+
+
 
