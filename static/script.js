@@ -2,8 +2,23 @@ async function start() {
     const n = document.getElementById("n");
     const AS7262 = document.getElementById("AS7262");
     const AS7341 = document.getElementById("AS7341");
+    let AS7262param = 0;
+    let AS7341param = 0;
 
-    await fetch('/api/start?n=' + n.value + '&AS7262=' + AS7262.checked + '&AS7341=' + AS7341.checked)
+
+    if (AS7262.checked === false && AS7341.checked === false) {
+        alert("Please select at least one sensor to start the measurement.");
+    }
+
+    if (AS7262.checked === true) {
+        AS7262param = 1;
+    }
+
+    if (AS7341.checked === true) {
+        AS7341param = 1;
+    }
+
+    await fetch('/api/start?n=' + n.value + '&AS7262=' + AS7262param + '&AS7341=' + AS7341param)
 }
 
 async function getFiles() {
@@ -17,7 +32,7 @@ async function getFiles() {
         files.push({
             sensor: fileNameSplit[0],
             date: fileNameSplit[1],
-            time: fileNameSplit[2],
+            time: fileNameSplit[2].replace("-", ":"),
             samples: fileNameSplit[3],
             originalName: fileName
         });

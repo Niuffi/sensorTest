@@ -21,8 +21,7 @@ class Sensor:
 
         class_name = self.__class__.__name__.split("_")[0]
         data_time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        data_time = data_time.replace(":", "_")
-        print(data_time)
+        data_time = data_time.replace(":", "-")
         file_name = f'{class_name}_{data_time}_{n}.csv'
 
         with open(f'data/{file_name}', 'w', newline='') as csvfile:
