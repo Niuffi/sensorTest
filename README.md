@@ -21,7 +21,24 @@ Change directory to the repository folder:
 ```bash
     cd sensorTest
 ```
+Add "data" directory:
+```bash
+    mkdir data
+```
+
 Run the program:
 ```bash
-    python3 main.py
+    python3 main.py -n [number of samples] --sensor [coma separated list of sensors]
+```
+Example:
+```bash
+    python3 main.py -n 10 --sensor AS7262,AS7341
+```
+Supported sensors:
+- AS7262
+- AS7341
+
+Run web server:
+```bash
+    sudo python3 web_server.py
 ```
