@@ -17,7 +17,7 @@ class Sensor:
         return self.results
 
     def get_results_as_csv(self, n):
-        self.read_n_times(self, n)
+        self.read_n_times(n)
 
         class_name = self.__class__.__name__.split("_")[0]
         data_time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
