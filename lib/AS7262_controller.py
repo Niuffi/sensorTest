@@ -26,13 +26,13 @@ class AS7262_controller(Sensor):
 
         try:
             results = obj.get_calibrated_values()
-        #     print("""
-        # Red:    {}
-        # Orange: {}
-        # Yellow: {}
-        # Green:  {}
-        # Blue:   {}
-        # Violet: {}""".format(*results))
+            #     print("""
+            # Red:    {}
+            # Orange: {}
+            # Yellow: {}
+            # Green:  {}
+            # Blue:   {}
+            # Violet: {}""".format(*results))
             print(results)
             return results
         except KeyboardInterrupt:
