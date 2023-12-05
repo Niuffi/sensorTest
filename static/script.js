@@ -1,9 +1,9 @@
-function start() {
+async function start() {
     const n = document.getElementById("n");
     const AS7262 = document.getElementById("AS7262");
     const AS7341 = document.getElementById("AS7341");
 
-    fetch('/api/start?n=' + n.value + '&AS7262=' + AS7262.checked + '&AS7341=' + AS7341.checked)
+    await fetch('/api/start?n=' + n.value + '&AS7262=' + AS7262.checked + '&AS7341=' + AS7341.checked)
 }
 
 async function getFiles() {
@@ -23,13 +23,28 @@ async function getFiles() {
         });
     });
 
+    files.sort((a, b) => {
+        if (a.date > b.date) {
+            return -1;
+        } else if (a.date < b.date) {
+            return 1;
+        } else {
+            if (a.time > b.time) {
+                return -1;
+            } else if (a.time < b.time) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    });
+
     const table = document.getElementById("filesTable");
     const tableBody = document.createElement("tbody");
     table.innerHTML = "";
     tableBody.id = "filesTableBody";
     table.appendChild(tableBody);
 
-    // header
     const header = document.createElement("tr");
     const sensorHeader = document.createElement("th");
     const timeHeader = document.createElement("th");
@@ -101,7 +116,7 @@ async function deleteFile(fileName) {
 
     if (confirmation) {
         await fetch('/api/file/' + fileName, {method: 'DELETE'});
-        getFiles();
+        await getFiles();
     }
 }
 
@@ -136,8 +151,8 @@ function loadConfigFromCookies() {
     });
 }
 
-function onLoad() {
+async function onLoad() {
     loadConfigFromCookies();
-    getFiles();
+    await getFiles();
 }
 

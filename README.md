@@ -10,6 +10,8 @@ Install the required packages:
     pip3 install flask
     pip3 install os
     pip3 install sys
+    pip3 install datetime
+    pip3 install csv
 ```
 Download the repository with the following command:
 ```bash

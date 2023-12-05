@@ -8,7 +8,7 @@ from util.display_help import display_help
 
 n = 1
 sensors = ['AS7341',
-           'AS7262',]
+           'AS7262']
            #'AS7265x']
 
 arguments = sys.argv[1:]
@@ -36,8 +36,9 @@ if 'AS7341' in sensors:
 
 if 'AS7262' in sensors:
     AS7262 = AS7262_controller()
-    AS7262.read_n_times(10)
+    AS7262.read_n_times(n)
     print(AS7262.get_results())
+
 
 # if 'AS7265x' in sensors:
 #     AS7265x = AS7265x_controller()
