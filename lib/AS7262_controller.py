@@ -20,7 +20,7 @@ class AS7262_controller(Sensor):
         obj.set_measurement_mode(2)
 
         # obj.set_illumination_led_current(12.5)
-        obj.set_illumination_led(1)
+        obj.set_illumination_led(0)
         # obj.set_indicator_led_current(2)
         # obj.set_indicator_led(1)
 
@@ -33,8 +33,9 @@ class AS7262_controller(Sensor):
         Green:  {}
         Blue:   {}
         Violet: {}""".format(*results))
+            return results
         except KeyboardInterrupt:
             obj.set_measurement_mode(3)
             obj.set_illumination_led(0)
 
-        return results
+

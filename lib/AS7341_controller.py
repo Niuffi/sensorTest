@@ -23,31 +23,31 @@ class AS7341_controller(Sensor):
             obj.AS7341_ReadSpectralDataOne()
 
             # channel1(405-425nm)
-            results['channel1'] = obj.channel1
+            results['405-425nm'] = obj.channel1
 
             # channel2(435-455nm)
-            results['channel2'] = obj.channel2
+            results['435-455nm'] = obj.channel2
 
             # channel3(470-490nm)
-            results['channel3'] = obj.channel3
+            results['470-490nm'] = obj.channel3
 
             # channel4(505-525nm)
-            results['channel4'] = obj.channel4
+            results['505-525nm'] = obj.channel4
 
             obj.AS7341_startMeasure(1)
             obj.AS7341_ReadSpectralDataTwo()
 
             # channel5(545-565nm)
-            results['channel5'] = obj.channel5
+            results['545-565nm'] = obj.channel5
 
             # channel6(580-600nm)
-            results['channel6'] = obj.channel6
+            results['580-600nm'] = obj.channel6
 
             # channel7(620-640nm)
-            results['channel7'] = obj.channel7
+            results['620-640nm'] = obj.channel7
 
             # channel8(670-690nm)
-            results['channel8'] = obj.channel8
+            results['670-690nm'] = obj.channel8
 
             # Clear
             results['clear'] = obj.CLEAR

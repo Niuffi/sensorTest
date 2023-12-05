@@ -2,14 +2,14 @@ import sys
 
 from lib.AS7341_controller import AS7341_controller
 from lib.AS7262_controller import AS7262_controller
-#from lib.AS7265x_controller import AS7265x_controller
+# from lib.AS7265x_controller import AS7265x_controller
 
 from util.display_help import display_help
 
 n = 1
 sensors = ['AS7341',
            'AS7262']
-           #'AS7265x']
+# 'AS7265x']
 
 arguments = sys.argv[1:]
 
@@ -27,18 +27,15 @@ while i < len(arguments):
         sys.exit(0)
     i += 1
 
-
 if 'AS7341' in sensors:
     AS7341 = AS7341_controller()
-    AS7341.read_n_times(n)
+    AS7341.get_results_as_csv(n)
     print(AS7341.get_results())
-
 
 if 'AS7262' in sensors:
     AS7262 = AS7262_controller()
-    AS7262.read_n_times(n)
+    AS7262.get_results_as_csv(n)
     print(AS7262.get_results())
-
 
 # if 'AS7265x' in sensors:
 #     AS7265x = AS7265x_controller()
