@@ -189,65 +189,71 @@ class AS7262:
         while self._as7262.get('CONTROL').data_ready == 0 and (time.time() - t_start) <= timeout:
             pass
         data = self._as7262.get('CALIBRATED_DATA')
-        return CalibratedValues(data.r, data.o, data.y, data.g, data.b, data.v)
 
-    def set_gain(self, gain):
-        """Set the gain amount of the AS7262.
+        return {"red": data.r,
+                "orange": data.o,
+                "yellow": data.y,
+                "green": data.g,
+                "blue": data.b,
+                "violet": data.v}
 
-        :param gain: gain multiplier, one of 1, 3.7, 16 or 64
+        def set_gain(self, gain):
+            """Set the gain amount of the AS7262.
 
-        """
-        self._as7262.set('CONTROL', gain_x=gain)
+            :param gain: gain multiplier, one of 1, 3.7, 16 or 64
 
-    def set_measurement_mode(self, mode):
-        """Set the AS7262 measurement mode.
+            """
+            self._as7262.set('CONTROL', gain_x=gain)
 
-        :param mode: 0-3
+        def set_measurement_mode(self, mode):
+            """Set the AS7262 measurement mode.
 
-        """
-        self._as7262.set('CONTROL', measurement_mode=mode)
+            :param mode: 0-3
 
-    def set_integration_time(self, time_ms):
-        """Set the AS7262 sensor integration time in milliseconds.
+            """
+            self._as7262.set('CONTROL', measurement_mode=mode)
 
-        :param time_ms: Time in milliseconds from 0 to ~91
+        def set_integration_time(self, time_ms):
+            """Set the AS7262 sensor integration time in milliseconds.
 
-        """
-        self._as7262.set('INTEGRATION_TIME', ms=time_ms)
+            :param time_ms: Time in milliseconds from 0 to ~91
 
-    def set_illumination_led_current(self, current):
-        """Set the AS7262 illumination LED current in milliamps.
+            """
+            self._as7262.set('INTEGRATION_TIME', ms=time_ms)
 
-        :param current: Value in milliamps, one of 12.5, 25, 50 or 100
+        def set_illumination_led_current(self, current):
+            """Set the AS7262 illumination LED current in milliamps.
 
-        """
-        self._as7262.set('LED_CONTROL', illumination_current_limit_ma=current)
+            :param current: Value in milliamps, one of 12.5, 25, 50 or 100
 
-    def set_indicator_led_current(self, current):
-        """Set the AS7262 indicator LED current in milliamps.
+            """
+            self._as7262.set('LED_CONTROL', illumination_current_limit_ma=current)
 
-        :param current: Value in milliamps, one of 1, 2, 4 or 8
+        def set_indicator_led_current(self, current):
+            """Set the AS7262 indicator LED current in milliamps.
 
-        """
-        self._as7262.set('LED_CONTROL', indicator_current_limit_ma=current)
+            :param current: Value in milliamps, one of 1, 2, 4 or 8
 
-    def set_illumination_led(self, state):
-        """Set the AS7262 illumination LED state.
+            """
+            self._as7262.set('LED_CONTROL', indicator_current_limit_ma=current)
 
-        :param state: True = On, False = Off
+        def set_illumination_led(self, state):
+            """Set the AS7262 illumination LED state.
 
-        """
-        self._as7262.set('LED_CONTROL', illumination_enable=state)
+            :param state: True = On, False = Off
 
-    def set_indicator_led(self, state):
-        """Set the AS7262 indicator LED state.
+            """
+            self._as7262.set('LED_CONTROL', illumination_enable=state)
 
-        :param state: True = On, False = Off
+        def set_indicator_led(self, state):
+            """Set the AS7262 indicator LED state.
 
-        """
-        self._as7262.set('LED_CONTROL', indicator_enable=state)
+            :param state: True = On, False = Off
 
-    def get_version(self):
-        """Get the hardware type, version and firmware version from the AS7262."""
-        version = self._as7262.get('VERSION')
-        return version.hw_type, version.hw_version, version.fw_version
+            """
+            self._as7262.set('LED_CONTROL', indicator_enable=state)
+
+        def get_version(self):
+            """Get the hardware type, version and firmware version from the AS7262."""
+            version = self._as7262.get('VERSION')
+            return version.hw_type, version.hw_version, version.fw_version
