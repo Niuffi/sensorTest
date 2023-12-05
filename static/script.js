@@ -32,7 +32,7 @@ async function getFiles() {
         files.push({
             sensor: fileNameSplit[0],
             date: fileNameSplit[1],
-            time: fileNameSplit[2].replace("-", ":"),
+            time: fileNameSplit[2].replaceAll("-", ":"),
             samples: fileNameSplit[3],
             originalName: fileName
         });
