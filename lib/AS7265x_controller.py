@@ -5,7 +5,7 @@ from lib.Sensor import Sensor
 class AS7265x_controller(Sensor):
     def read(self):
         obj = AS7265x
-        output = obj.readRAW()
+        output = obj.readCAL()
         results = {
             '410nm': output[0],
             '435nm': output[1],
