@@ -6,6 +6,7 @@ class AS7265x_controller(Sensor):
     def read(self):
         obj = AS7265x
         results = obj.readCAL()
+        print('-----------------------\n',results)
         return results
 
 
