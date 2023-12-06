@@ -15,15 +15,16 @@ def start():
     n = request.args.get('n')
     AS7341 = request.args.get('AS7341')
     AS7262 = request.args.get('AS7262')
-    # AS7265x = request.args.get('AS7265x')
+    AS7265x = request.args.get('AS7265x')
 
     sensors_to_run = []
     n_run = 1 if n == '' else int(n)
     sensors_to_run.append('AS7341') if AS7341 == '1' else None
     sensors_to_run.append('AS7262') if AS7262 == '1' else None
-    # sensors_to_run.append('AS7265x') if AS7265x == '1' else None
+    sensors_to_run.append('AS7265x') if AS7265x == '1' else None
 
     sensors_shell = ','.join(sensors_to_run)
+
     os.system(f'python3 main.py -n {n_run} --sensor {sensors_shell}')
 
     return 'started'

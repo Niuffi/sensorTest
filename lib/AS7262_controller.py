@@ -11,8 +11,6 @@ class AS7262_controller(Sensor):
 
         hw_type, hw_version, fw_version = obj.get_version()
 
-        print('{}'.format(fw_version))
-
         obj.set_gain(64)
 
         obj.set_integration_time(17.857)
@@ -26,14 +24,6 @@ class AS7262_controller(Sensor):
 
         try:
             results = obj.get_calibrated_values()
-            print("""
-                Red:    {}
-                Orange: {}
-                Yellow: {}
-                Green:  {}
-                Blue:   {}
-                Violet: {}""".format(*results))
-            print(results)
             return results
         except KeyboardInterrupt:
             obj.set_measurement_mode(3)

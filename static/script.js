@@ -2,11 +2,13 @@ async function start() {
     const n = document.getElementById("n");
     const AS7262 = document.getElementById("AS7262");
     const AS7341 = document.getElementById("AS7341");
+    const AS7265x = document.getElementById("AS7265x");
     let AS7262param = 0;
     let AS7341param = 0;
+    let AS7265xparam = 0;
 
 
-    if (AS7262.checked === false && AS7341.checked === false) {
+    if (AS7262.checked === false && AS7341.checked === false && AS7265x.checked === false) {
         alert("Please select at least one sensor to start the measurement.");
     }
 
@@ -18,7 +20,14 @@ async function start() {
         AS7341param = 1;
     }
 
-    await fetch('/api/start?n=' + n.value + '&AS7262=' + AS7262param + '&AS7341=' + AS7341param)
+    if (AS7265x.checked === true) {
+        AS7265xparam = 1;
+    }
+
+    await fetch('/api/start?n=' + n.value +
+        '&AS7262=' + AS7262param +
+        '&AS7341=' + AS7341param +
+        '&AS7265x=' + AS7265xparam);
 }
 
 async function getFiles() {
@@ -139,17 +148,20 @@ function saveConfigToCookies() {
     const n = document.getElementById("n");
     const AS7262 = document.getElementById("AS7262");
     const AS7341 = document.getElementById("AS7341");
+    const AS7265x = document.getElementById("AS7265x");
 
     document.cookie = "n=" + n.value;
     document.cookie = "AS7262=" + AS7262.checked;
     document.cookie = "AS7341=" + AS7341.checked;
+    document.cookie = "AS7265x=" + AS7265x.checked;
 }
 
 function loadConfigFromCookies() {
     const elementsMap = {
         n: document.getElementById("n"),
         AS7262: document.getElementById("AS7262"),
-        AS7341: document.getElementById("AS7341")
+        AS7341: document.getElementById("AS7341"),
+        AS7265x: document.getElementById("AS7265x")
     };
 
     const cookies = document.cookie.split(";");
