@@ -12,4 +12,4 @@ def display_help():
     print("Available sensors:")
     print("  AS7341")
     print("  AS7262")
-    #print("  AS7265x")
+    print("  AS7265x")
