@@ -33,20 +33,17 @@ if 'AS7341' in sensors:
     TCA9548A.select_channel(5)
     AS7341 = AS7341_controller()
     AS7341.get_results_as_csv(n)
-    print(AS7341.get_results())
     time.sleep(5)
 
 if 'AS7262' in sensors:
     TCA9548A.select_channel(0)
     AS7262 = AS7262_controller()
     AS7262.get_results_as_csv(n)
-    print(AS7262.get_results())
     time.sleep(5)
 
 if 'AS7265x' in sensors:
     TCA9548A.select_channel(1)
     AS7265x = AS7265x_controller()
     AS7265x.get_results_as_csv(n)
-    print(AS7265x.get_results())
     time.sleep(5)
 

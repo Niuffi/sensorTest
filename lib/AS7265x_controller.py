@@ -27,5 +27,5 @@ class AS7265x_controller(Sensor):
             '900nm': output[16],
             '940nm': output[17],
         }
-        print('-----------------------\n', results)
+        print('----AS7265x-------------------\n', results)
         return results

@@ -190,12 +190,16 @@ class AS7262:
             pass
         data = self._as7262.get('CALIBRATED_DATA')
 
-        return {"red": data.r,
+        result = {"red": data.r,
                 "orange": data.o,
                 "yellow": data.y,
                 "green": data.g,
                 "blue": data.b,
                 "violet": data.v}
+
+        print('----AS7262--------------------\n', result)
+
+        return result
 
     def set_gain(self, gain):
         """Set the gain amount of the AS7262.
