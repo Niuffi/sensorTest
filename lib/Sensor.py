@@ -29,3 +29,6 @@ class Sensor:
             writer.writerow(self.results[0].keys())
             for result in self.results:
                 writer.writerow(result.values())
+
+        csvfile.close()
+
