@@ -3,7 +3,7 @@ from lib.AS7262 import AS7262
 
 
 class AS7262_controller(Sensor):
-
+    # i2c address: 0x49
     def read(self):
         obj = AS7262()
 

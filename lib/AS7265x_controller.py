@@ -3,6 +3,7 @@ from lib.Sensor import Sensor
 
 
 class AS7265x_controller(Sensor):
+    # i2c address: 0x49
     def read(self):
         obj = AS7265x
         output = obj.readCAL()
@@ -28,11 +29,3 @@ class AS7265x_controller(Sensor):
         }
         print('-----------------------\n', results)
         return results
-
-
-
-
-
-
-
-

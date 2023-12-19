@@ -4,7 +4,7 @@ import logging
 
 
 class AS7341_controller(Sensor):
-
+    # i2c address: 0x39
     def read(self):
         results = {}
 
