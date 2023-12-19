@@ -17,6 +17,7 @@ class Sensor:
         return self.results
 
     def get_results_as_csv(self, n):
+        self.results = []
         self.read_n_times(n)
 
         class_name = self.__class__.__name__.split("_")[0]
