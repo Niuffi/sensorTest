@@ -37,6 +37,7 @@ Example:
 Supported sensors:
 - AS7262
 - AS7341
+- AS7265x
 
 Run web server:
 ```bash
