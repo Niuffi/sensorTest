@@ -55,7 +55,7 @@ class AS7341_controller(Sensor):
             # NIR
             results['nir'] = obj.NIR
 
-            print('----AS7262--------------------\n', results)
+            print('----AS7341--------------------\n', results)
 
 
         except KeyboardInterrupt:

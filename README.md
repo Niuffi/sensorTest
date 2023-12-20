@@ -4,14 +4,14 @@ Install the required packages:
     sudo apt install python3
     sudo apt install python3-pip
     sudo apt install python3-pil
-    pip3 install RPi.GPIO
-    pip3 install smbus
-    pip3 install i2cdevice
-    pip3 install flask
-    pip3 install os
-    pip3 install sys
-    pip3 install datetime
-    pip3 install csv
+    sudo apt install python3-RPi.GPIO
+    sudo apt install python3-smbus
+    sudo apt install python3-i2cdevice
+    sudo apt install python3-flask
+    sudo apt install python3-os
+    sudo apt install python3-sys
+    sudo apt install python3-datetime
+    sudo apt install python3-csv
 ```
 Download the repository with the following command:
 ```bash
