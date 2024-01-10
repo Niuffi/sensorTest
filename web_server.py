@@ -27,6 +27,7 @@ def start():
 
     sensors_shell = ','.join(sensors_to_run)
 
+
     os.system(f'python3 main.py -n {n_run} --sensor {sensors_shell}')
 
     return 'started'
@@ -42,7 +43,7 @@ def get_files():
 
 @app.route('/api/download/<path:filename>')
 def download_file(filename):
-    directory = 'data'
+    directory = '/home/kamil/sensorTest/data'
 
     return send_from_directory(directory, filename, as_attachment=True)
 
