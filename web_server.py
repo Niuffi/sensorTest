@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import os
 from flask import Flask, jsonify, request, render_template, send_from_directory
 from util.file_walk import file_walk
