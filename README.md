@@ -1,17 +1,16 @@
 Install the required packages:
 ```bash
     sudo apt update
-    sudo apt install python3
-    sudo apt install python3-pip
-    sudo apt install python3-pil
-    sudo apt install python3-RPi.GPIO
-    sudo apt install python3-smbus
-    sudo apt install python3-i2cdevice
-    sudo apt install python3-flask
-    sudo apt install python3-os
-    sudo apt install python3-sys
-    sudo apt install python3-datetime
-    sudo apt install python3-csv
+    sudo apt install python3 -y  
+    sudo apt install python3-pip -y
+    sudo apt install python3-pil -y
+    sudo apt install python3-RPi.GPIO -y
+    sudo apt install python3-smbus -y
+    sudo apt install python3-i2cdevice -y
+    sudo apt install python3-flask -y
+    sudo rm /usr/lib/python3.11/EXTERNALLY-MANAGED
+    sudo apt install python3-datetime -y
+    sudo apt install python3-csv -y
 ```
 Download the repository with the following command:
 ```bash
