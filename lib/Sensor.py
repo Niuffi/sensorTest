@@ -25,7 +25,7 @@ class Sensor:
         # data_time = data_time.replace(":", "-")
         file_name = f'{class_name}_{data_time}_{n}.csv'
 
-        with open(f'data/{file_name}', 'w', newline='') as csvfile:
+        with open(f'home/kamil/sensorTest/data/{file_name}', 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
             writer.writerow(self.results[0].keys())
             for result in self.results:

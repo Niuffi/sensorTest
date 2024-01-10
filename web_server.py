@@ -27,15 +27,14 @@ def start():
 
     sensors_shell = ','.join(sensors_to_run)
 
-
-    os.system(f'python3 main.py -n {n_run} --sensor {sensors_shell}')
+    os.system(f'python3 /home/kamil/sensorTest/main.py -n {n_run} --sensor {sensors_shell}')
 
     return 'started'
 
 
 @app.route('/api/files', methods=['GET'])
 def get_files():
-    files = file_walk('data')
+    files = file_walk('/home/kamil/sensorTest/data')
     files_json = jsonify(files)
 
     return files_json
@@ -43,7 +42,10 @@ def get_files():
 
 @app.route('/api/download/<path:filename>')
 def download_file(filename):
+
     directory = '/home/kamil/sensorTest/data'
+    if not os.path.exists(directory):
+        os.makedirs(directory)
 
     return send_from_directory(directory, filename, as_attachment=True)
 
