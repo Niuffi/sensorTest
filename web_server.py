@@ -18,6 +18,8 @@ def start():
     AS7341 = request.args.get('AS7341')
     AS7262 = request.args.get('AS7262')
     AS7265x = request.args.get('AS7265x')
+    parameter = request.args.get('parameter')
+    colorant = request.args.get('colorant')
 
     sensors_to_run = []
     n_run = 1 if n == '' else int(n)
@@ -27,7 +29,7 @@ def start():
 
     sensors_shell = ','.join(sensors_to_run)
 
-    os.system(f'python3 /home/kamil/sensorTest/main.py -n {n_run} --sensor {sensors_shell}')
+    os.system(f'python3 /home/kamil/sensorTest/main.py -n {n_run} --sensor {sensors_shell} -p {parameter} -c {colorant}')
 
     return 'started'
 

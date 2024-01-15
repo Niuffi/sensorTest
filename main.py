@@ -27,23 +27,25 @@ while i < len(arguments):
         sys.exit(0)
     i += 1
 
+parameter = ""
+colorant = ""
+
 TCA9548A = TCA9548A()
 
 if 'AS7341' in sensors:
     TCA9548A.select_channel(5)
     AS7341 = AS7341_controller()
-    AS7341.get_results_as_csv(n)
+    AS7341.get_results_as_csv(n, parameter, colorant)
     time.sleep(5)
 
 if 'AS7262' in sensors:
     TCA9548A.select_channel(0)
     AS7262 = AS7262_controller()
-    AS7262.get_results_as_csv(n)
+    AS7262.get_results_as_csv(n, parameter, colorant)
     time.sleep(5)
 
 if 'AS7265x' in sensors:
     TCA9548A.select_channel(1)
     AS7265x = AS7265x_controller()
-    AS7265x.get_results_as_csv(n)
+    AS7265x.get_results_as_csv(n, parameter, colorant)
     time.sleep(5)
-

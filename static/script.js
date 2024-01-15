@@ -3,6 +3,8 @@ async function start() {
     const AS7262 = document.getElementById("AS7262");
     const AS7341 = document.getElementById("AS7341");
     const AS7265x = document.getElementById("AS7265x");
+    const parameter = document.getElementById("parameter");
+    const colorant = document.getElementById("colorant");
     let AS7262param = 0;
     let AS7341param = 0;
     let AS7265xparam = 0;
@@ -10,6 +12,14 @@ async function start() {
 
     if (AS7262.checked === false && AS7341.checked === false && AS7265x.checked === false) {
         alert("Please select at least one sensor to start the measurement.");
+    }
+
+    if (parameter.value === "") {
+        alert("Please enter a parameter.");
+    }
+
+    if (colorant.value === "") {
+        alert("Please enter a colorant.");
     }
 
     if (AS7262.checked === true) {
@@ -24,10 +34,13 @@ async function start() {
         AS7265xparam = 1;
     }
 
-    await fetch('/api/start?n=' + n.value +
+    await fetch('/api/start?' +
+        'n=' + n.value +
         '&AS7262=' + AS7262param +
         '&AS7341=' + AS7341param +
-        '&AS7265x=' + AS7265xparam);
+        '&AS7265x=' + AS7265xparam +
+        '&parameter=' + parameter.value +
+        '&colorant=' + colorant.value);
 }
 
 async function getFiles() {
@@ -43,6 +56,8 @@ async function getFiles() {
             date: fileNameSplit[1],
             time: fileNameSplit[2].replaceAll("-", ":"),
             samples: fileNameSplit[3],
+            parameter: fileNameSplit[4],
+            colorant: fileNameSplit[5],
             originalName: fileName
         });
     });
@@ -70,10 +85,13 @@ async function getFiles() {
     table.appendChild(tableBody);
 
     const header = document.createElement("tr");
+
     const sensorHeader = document.createElement("th");
     const timeHeader = document.createElement("th");
     const dateHeader = document.createElement("th");
     const samplesHeader = document.createElement("th");
+    const parameterHeader = document.createElement("th");
+    const colorantHeader = document.createElement("th");
     const downloadHeader = document.createElement("th");
     const deleteHeader = document.createElement("th");
 
@@ -81,6 +99,8 @@ async function getFiles() {
     timeHeader.innerText = "Time";
     dateHeader.innerText = "Date";
     samplesHeader.innerText = "Samples";
+    parameterHeader.innerText = "Parameter";
+    colorantHeader.innerText = "Colorant";
     downloadHeader.innerText = "";
     deleteHeader.innerText = "";
 
@@ -88,6 +108,8 @@ async function getFiles() {
     header.appendChild(timeHeader);
     header.appendChild(dateHeader);
     header.appendChild(samplesHeader);
+    header.appendChild(parameterHeader);
+    header.appendChild(colorantHeader);
     header.appendChild(downloadHeader);
     header.appendChild(deleteHeader);
 
@@ -100,6 +122,8 @@ async function getFiles() {
         const time = document.createElement("td");
         const date = document.createElement("td");
         const samples = document.createElement("td");
+        const parameter = document.createElement("td");
+        const colorant = document.createElement("td");
         const downloadButton = document.createElement("button");
         const deleteButton = document.createElement("button");
 
@@ -107,6 +131,8 @@ async function getFiles() {
         date.innerText = file.date;
         time.innerText = file.time;
         samples.innerText = file.samples;
+        parameter.innerText = file.parameter;
+        colorant.innerText = file.colorant;
         downloadButton.innerText = "Download";
         downloadButton.onclick = () => downloadFile(file.originalName);
         deleteButton.innerText = "Delete";
@@ -116,6 +142,8 @@ async function getFiles() {
         row.appendChild(time);
         row.appendChild(date);
         row.appendChild(samples);
+        row.appendChild(parameter);
+        row.appendChild(colorant);
         row.appendChild(downloadButton);
         row.appendChild(deleteButton);
         tableBody.appendChild(row);
@@ -149,11 +177,15 @@ function saveConfigToCookies() {
     const AS7262 = document.getElementById("AS7262");
     const AS7341 = document.getElementById("AS7341");
     const AS7265x = document.getElementById("AS7265x");
+    const parameter = document.getElementById("parameter");
+    const colorant = document.getElementById("colorant");
 
     document.cookie = "n=" + n.value;
     document.cookie = "AS7262=" + AS7262.checked;
     document.cookie = "AS7341=" + AS7341.checked;
     document.cookie = "AS7265x=" + AS7265x.checked;
+    document.cookie = "parameter=" + parameter.value;
+    document.cookie = "colorant=" + colorant.value;
 }
 
 function loadConfigFromCookies() {
@@ -161,7 +193,9 @@ function loadConfigFromCookies() {
         n: document.getElementById("n"),
         AS7262: document.getElementById("AS7262"),
         AS7341: document.getElementById("AS7341"),
-        AS7265x: document.getElementById("AS7265x")
+        AS7265x: document.getElementById("AS7265x"),
+        parameter: document.getElementById("parameter"),
+        colorant: document.getElementById("colorant")
     };
 
     const cookies = document.cookie.split(";");

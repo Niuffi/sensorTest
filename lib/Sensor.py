@@ -16,14 +16,13 @@ class Sensor:
     def get_results(self):
         return self.results
 
-    def get_results_as_csv(self, n):
+    def get_results_as_csv(self, n, parameter, colorant):
         self.results = []
         self.read_n_times(n)
 
         class_name = self.__class__.__name__.split("_")[0]
         data_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        # data_time = data_time.replace(":", "-")
-        file_name = f'{class_name}_{data_time}_{n}.csv'
+        file_name = f'{class_name}_{data_time}_{n}_{parameter}_{colorant}.csv'
 
         with open(f'home/kamil/sensorTest/data/{file_name}', 'w', newline='') as csvfile:
             writer = csv.writer(csvfile)
@@ -32,4 +31,3 @@ class Sensor:
                 writer.writerow(result.values())
 
         csvfile.close()
-
